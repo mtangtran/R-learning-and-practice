@@ -1,13 +1,12 @@
 library(corrplot)
 library(RColorBrewer)
+library(randomForest)
 
 # loading 
 data(mtcars)
 head(mtcars, 6)
 
 ?mtcars
-
-nrow(mtcars)
 
 
 # Not a good summary. Full model is not good.
@@ -24,3 +23,8 @@ M <-cor(mtcars)
 corrplot(M, type="upper", order="hclust",
          col=brewer.pal(n=8, name="RdYlBu"))
 
+# random forest
+rf_model_1 <- randomForest(mpg~., data=mtcars)
+summary(rf_model_1)
+
+predict(rf_model_1, mtcars)
