@@ -27,4 +27,21 @@ corrplot(M, type="upper", order="hclust",
 rf_model_1 <- randomForest(mpg~., data=mtcars)
 summary(rf_model_1)
 
-predict(rf_model_1, mtcars)
+# creating a training and testing set
+dt = sort(sample(nrow(mtcars), nrow(mtcars)*.7))
+train <- mtcars[dt,]
+test<- mtcars[-dt,]
+
+# full model is still not great
+lm_train <- lm(mpg ~., train)
+summary(lm_train)
+pred_lm = predict(lm_train, test)
+mse = (pred_lm-test)**2
+mse
+
+# reduced model from before
+lm_model_reduced_1 <- lm(mpg ~ vs+qsec, train)
+summary(lm_model_reduced_1)
+pred_lm1 = predict(lm_model_reduced_1, test)
+mse1 = (pred_lm1- test)**2
+mse1
