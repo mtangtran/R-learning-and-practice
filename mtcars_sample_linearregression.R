@@ -40,8 +40,18 @@ mse = (pred_lm-test)**2
 mse
 
 # reduced model from before
-lm_model_reduced_1 <- lm(mpg ~ vs+qsec, train)
+lm_model_reduced_1 <- lm(mpg ~ vs, train)
 summary(lm_model_reduced_1)
 pred_lm1 = predict(lm_model_reduced_1, test)
 mse1 = (pred_lm1- test)**2
 mse1
+plot(mtcars$vs, mtcars$mpg)
+
+# reduced model from before
+lm_model_reduced_2 <- lm(mpg ~qsec, train)
+summary(lm_model_reduced_2)
+pred_lm2 = predict(lm_model_reduced_2, test)
+mse2 = (pred_lm2- test)**2
+mse2
+plot(mtcars$qsec, mtcars$mpg, main = "qsec vs mpg")
+abline(lm_model_reduced_2, col="red")
