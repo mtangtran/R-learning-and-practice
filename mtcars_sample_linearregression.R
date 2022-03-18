@@ -8,7 +8,7 @@ head(mtcars, 6)
 
 ?mtcars
 
-
+plot(mtcars$mpg, mtcars$wt, xlab="weight", ylab="mpg", main = "MTCARS MPG", col="Red")
 # Not a good summary. Full model is not good.
 lm_model_mtcars <- lm(mpg ~ ., data = mtcars)
 summary(lm_model_mtcars)
@@ -55,3 +55,12 @@ mse2 = (pred_lm2- test)**2
 mse2
 plot(mtcars$qsec, mtcars$mpg, main = "qsec vs mpg")
 abline(lm_model_reduced_2, col="red")
+
+# reduced model from before
+lm_model_reduced_3 <- lm(mpg ~wt, train)
+summary(lm_model_reduced_3)
+pred_lm3 = predict(lm_model_reduced_3, test)
+mse3 = (pred_lm3- test)**2
+mse3
+plot(mtcars$wt, mtcars$mpg, main = "wt vs mpg")
+abline(lm_model_reduced_3, col="red")
