@@ -6,9 +6,9 @@ library(randomForest)
 data(mtcars)
 head(mtcars, 6)
 
-?mtcars
-
 plot(mtcars$mpg, mtcars$wt, xlab="weight", ylab="mpg", main = "MTCARS MPG", col="Red")
+hist(mtcars$wt, col = "blue")
+
 # Not a good summary. Full model is not good.
 lm_model_mtcars <- lm(mpg ~ ., data = mtcars)
 summary(lm_model_mtcars)
@@ -35,7 +35,7 @@ test<- mtcars[-dt,]
 # full model is still not great
 lm_train <- lm(mpg ~., train)
 summary(lm_train)
-pred_lm = predict(lm_train, test)
+pred_lm = predict(lm_train, test$mpg)
 mse = (pred_lm-test)**2
 mse
 
@@ -54,7 +54,10 @@ pred_lm2 = predict(lm_model_reduced_2, test)
 mse2 = (pred_lm2- test)**2
 mse2
 plot(mtcars$qsec, mtcars$mpg, main = "qsec vs mpg")
-abline(lm_model_reduced_2, col="red")
+abline(lm_model_reduced_2, col="red"+
+         
+         
+         )
 
 # reduced model from before
 lm_model_reduced_3 <- lm(mpg ~wt, train)
@@ -64,3 +67,5 @@ mse3 = (pred_lm3- test)**2
 mse3
 plot(mtcars$wt, mtcars$mpg, main = "wt vs mpg")
 abline(lm_model_reduced_3, col="red")
+
+
