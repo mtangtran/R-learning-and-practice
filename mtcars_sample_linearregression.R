@@ -27,6 +27,9 @@ corrplot(M, type="upper", order="hclust",
 rf_model_1 <- randomForest(mpg~., data=mtcars)
 summary(rf_model_1)
 
+rf_model_2 <- randomForest(mpg~wt, data=mtcars)
+summary(rf_model_2)
+
 # creating a training and testing set
 dt = sort(sample(nrow(mtcars), nrow(mtcars)*.7))
 train <- mtcars[dt,]
